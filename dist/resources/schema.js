@@ -49,7 +49,7 @@ module.exports = function () {
             };
             this.api.get({
                 url: url
-            }, apiResponse);
+            }, callback);
         }
     }, {
         key: "add",

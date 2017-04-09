@@ -40,24 +40,11 @@ module.exports = function () {
                     return callback([errorMessages.norequestinfo]);
                 }
                 var restResponse = function restResponse(err, res) {
-                    if (err) {
-                        if (err.status == 400) {
-                            return callback([{
-                                title: "ERROR",
-                                message: "400 Doesnt Exist",
-                                code: "APIERROR"
-                            }]);
-                        }
-                        if (err.status == 500) {
-                            return callback([{
-                                title: "ERROR",
-                                message: "500 Solr Error",
-                                code: "APIERROR"
-                            }]);
-                        }
-                        return callback(err);
+                    var response = JSON.parse(res.text);
+                    if (response.responseHeader.status === 0 || response.responseHeader.status === 200) {
+                        return callback(null, response);
                     } else {
-                        return callback(null, JSON.parse(res.text));
+                        return callback(response);
                     }
                 };
                 request.get(url).set('Content-Type', 'application/json').query(query).set(headers || {}).set("Host", this.host).end(restResponse);
@@ -82,17 +69,11 @@ module.exports = function () {
                     return callback([errorMessages.norequestinfo]);
                 }
                 var restResponse = function restResponse(err, res) {
-                    if (err) {
-                        if (err.status == 400) {
-                            return callback([{
-                                title: "ERROR",
-                                message: "400 Doesnt Exist",
-                                code: "APIERROR"
-                            }]);
-                        }
-                        return callback(err);
+                    var response = JSON.parse(res.text);
+                    if (response.responseHeader.status === 0 || response.responseHeader.status === 200) {
+                        return callback(null, response);
                     } else {
-                        return callback(null, JSON.parse(res.text));
+                        return callback(response);
                     }
                 };
                 request.post(url).set('Content-Type', 'application/json').query(query).set(headers || {}).set("Host", this.host).send(body || {}).end(restResponse);

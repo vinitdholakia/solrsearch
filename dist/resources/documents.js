@@ -4,12 +4,6 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var errorMessages = {};
-errorMessages.viewfields = {
-    title: "ERROR",
-    message: "Error loading the schema",
-    code: "SCHEMAERROR"
-};
 module.exports = function () {
     function Documents(api, core) {
         _classCallCheck(this, Documents);
@@ -46,6 +40,11 @@ module.exports = function () {
                     }
                     return _this.query(append);
                 },
+                sort: function sort(field, type) {
+                    type = type || 'asc';
+                    var append = "&sort=" + field + " " + type;
+                    return _this.query(append);
+                },
                 group: function group(field, limit) {
                     var append = "&group=true";
                     _this.groupedQuery = true;
@@ -57,29 +56,20 @@ module.exports = function () {
                     }
                     return _this.query(append);
                 },
+                custom: function custom(obj) {
+                    var append = "";
+                    for (var key in cores) {
+                        var value = cores[key];
+                        append = "&" + key + "=" + value;
+                    }
+                    return _this.query(append);
+                },
                 end: function end(callback) {
-                    var isGrouped = _this.groupedQuery;
                     var url = _this.selectquery;
                     _this.selectquery = _this.documenturl + "/select?wt=json";
-                    _this.groupedQuery = false;
-                    var apiResponse = function apiResponse(err, result) {
-                        if (err) {
-                            return callback(err);
-                        } else if (!!result) {
-                            if (!isGrouped && result.response.numFound > 0) {
-                                return callback(null, result.response.docs);
-                            } else if (!!isGrouped) {
-                                return callback(null, result);
-                            } else {
-                                return callback(null, []);
-                            }
-                        } else {
-                            return callback([errorMessages.viewfields]);
-                        }
-                    };
                     _this.api.get({
                         url: url
-                    }, apiResponse);
+                    }, callback);
                 }
             };
         }

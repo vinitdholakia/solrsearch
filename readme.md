@@ -44,7 +44,7 @@ solr.demo.reload();
 Note : All functions accept a callback function as the last parameter
 Sample callbackFunction : 
 ```javascript
-var function callbackFunction(err,result){
+function callbackFunction(err,result){
 	if(err){
 	 	// do something with error
 	}else{

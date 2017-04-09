@@ -44,7 +44,7 @@ solr.demo.reload();
 Note : All functions accept a callback function as the last parameter
 Sample callbackFunction : 
 ```javascript
-function callbackFunction(err,result){
+function callbackFunction(err, result){
 	if(err){
 	 	// do something with error
 	}else{
@@ -59,19 +59,19 @@ function callbackFunction(err,result){
 1. Status of the core
 
 ```javascript
-solr.demo.status(/*callbackFunction*/);
+solr.demo.status(callbackFunction);
 ```
 
 2. Load of the core
 
 ```javascript
-solr.demo.load(/*callbackFunction*/);
+solr.demo.load(callbackFunction);
 ```
 
 3. Reload of the core
 
 ```javascript
-solr.demo.reload(/*callbackFunction*/);
+solr.demo.reload(callbackFunction);
 ```
 
 ### Schema Properties
@@ -79,28 +79,30 @@ solr.demo.reload(/*callbackFunction*/);
 1. list all fields of the core schema
 
 ```javascript
-solr.demo.schema.fields(/*callbackFunction*/);
+solr.demo.schema.fields(callbackFunction);
 ```
 
 2. Add a field to the schema
 
 ```javascript
-solr.demo.schema.add({name : "newField",type :"string"},/*callbackFunction*/);
+solr.demo.schema.add({name : "newField",type :"string"}, callbackFunction);
 ```
 
 3. Update a field 
 
 ```javascript
-solr.demo.schema.update({name : "newField",type :"boolean"},/*callbackFunction*/);
+solr.demo.schema.update({name : "newField",type :"boolean"}, callbackFunction);
 ```
 
 4. Remove a field from the schema
 
 ```javascript
-solr.demo.schema.remove({name : "newField"},/*callbackFunction*/);
+solr.demo.schema.remove({name : "newField"}, callbackFunction);
 ```
 
-### Querying
+### Document Properties
+
+1. To Query Results
 
 This example will explain all
 
@@ -111,5 +113,37 @@ solr.demo.documents.query('*:*')
 		.filter('name,of,required,fields,as,csv')
 		.group('groupField',limit) 
 		.custom({key:value}) //  any custom properties need to be added in the query
-		.end(/*callbackFunction*/); // need to call this at the end of forming the query
+		.end(callbackFunction); // need to call this at the end of forming the query
 ```
+
+2. To Add Documents in the collection
+
+```javascript
+solr.demo.documents.add([documentObjects], callbackFunction)
+```
+
+3. To Update Fields of Documents in the collection
+
+```javascript
+solr.demo.documents.update({name:"newName"}, '*:*', callbackFunction)
+```
+
+4. To Delete Documents in the collection
+
+```javascript
+solr.demo.documents.delete('type:toBeDeleted', callbackFunction)
+```
+
+5. To clear the collection
+
+```javascript
+solr.demo.documents.clear(callbackFunction)
+```
+
+
+
+
+
+
+
+

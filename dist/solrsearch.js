@@ -37,16 +37,53 @@ try {
         host: "35.154.13.189",
         cores: {
             global: "global",
-            global2: "global2"
+            global2: "global2",
+            lab: "pathlabinfo"
         }
     });
-    //x.global.reload(commonCallback);
-    //x.global.status(commonCallback);
-    //x.global2.reload(commonCallback);
-    //x.global2.status(commonCallback);
-    x.global.schema.fields(commonCallback);
+
+    var toAdd = {
+        "id": "2b8510a0-154f-11e7-bd60-bdd108b2d212",
+        "accountid": "db55c340-154f-11e7-bd60-bdd108b2d21d",
+        "labname": "Sanjeevani 2 Laboratory",
+        "labtype": "PATHOLOGY",
+        "accreditation": "[]",
+        "advancebooking": "true",
+        "homecollection": "true",
+        "timeslots": "{}",
+        "contact": "{\"mobile\":\"02228445675\"}",
+        "city": "Mumbai",
+        "location": "19.18449,72.852792",
+        "locality": "Off Rani Sati Marg, Malad East",
+        "address": "Bhavani Chambers, Kedarmal Road,Off Rani Sati Marg, Malad East,,,Mumbai,Maharashtra,400097,India",
+        "is_active": "1"
+    };
+    var toAddAlso = {
+        "id": "2b8510a0-154f-11e7-bd60-bdd108b2d213",
+        "accountid": "db55c340-154f-11e7-bd60-bdd108b2d21d",
+        "labname": "Sanjeevani 2 Laboratory",
+        "labtype": "PATHOLOGY",
+        "accreditation": "[]",
+        "advancebooking": "true",
+        "homecollection": "true",
+        "timeslots": "{}",
+        "contact": "{\"mobile\":\"02228445675\"}",
+        "city": "Mumbai",
+        "location": "19.18449,72.852792",
+        "locality": "Off Rani Sati Marg, Malad East",
+        "address": "Bhavani Chambers, Kedarmal Road,Off Rani Sati Marg, Malad East,,,Mumbai,Maharashtra,400097,India",
+        "is_active": "1"
+    };
+
+    //x.lab.documents.add([toAdd,toAddAlso], commonCallback);
+    //x.lab.documents.delete('id:2b8510a0-154f-11e7-bd60-bdd108b2d21*', commonCallback);
+    //x.lab.documents.query('labtype:PATHOLOGY').filter('labtype').end(commonCallback);
+    //x.lab.schema.fields(commonCallback);
+    x.lab.documents.update({
+        accreditation: "[{\"type\":\"CAP\"}]"
+    }, "*:*", commonCallback);
 } catch (e) {
-    console.log("ERROR");
+    //console.log("ERROR")
     console.log(e.message);
 }
 

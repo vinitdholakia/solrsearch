@@ -106,10 +106,10 @@ This example will explain all
 
 ```javascript
 solr.demo.documents.query('*:*')
-					.sort('sortFieldName','asc || desc') // default is asc
-					.paginate(start,limit) // default limit is 10
-					.filter('name,of,required,fields,as,csv')
-					.group('groupField',limit) 
-					.custom({key:value}) //  any custom properties need to be added in the query
-					.end(/*callbackFunction*/); // need to call this at the end of forming the query
+		.sort('sortFieldName','asc || desc') // default is asc
+		.paginate(start,limit) // default limit is 10
+		.filter('name,of,required,fields,as,csv')
+		.group('groupField',limit) 
+		.custom({key:value}) //  any custom properties need to be added in the query
+		.end(/*callbackFunction*/); // need to call this at the end of forming the query
 ```

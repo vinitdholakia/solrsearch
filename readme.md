@@ -22,7 +22,8 @@ var options = {
 	host : 'localhost',
 	port : 8983,
 	cores : {
-		coreKey : coreName
+		coreKey : coreName,
+		demo : "demoCore"
 	}
 }
 var solr = new ss(options);
@@ -35,5 +36,66 @@ Example :
 ```javascript
 // manage solr core
 // solr.{{coreKey}}.reload()
-solr.global.reload();
+solr.demo.reload();
+```
+
+## Things to do
+
+Note : All functions accept a callback function as the last parameter
+Sample callbackFunction : 
+```javascript
+var function callbackFunction(err,result){
+	if(err){
+	 	// do something with error
+	}else{
+		// do something with the result
+	}
+}
+```
+
+
+### Core Properties
+
+1. Status of the core
+
+```javascript
+solr.demo.status(/*callbackFunction*/);
+```
+
+2. Load of the core
+
+```javascript
+solr.demo.load(/*callbackFunction*/);
+```
+
+3. Reload of the core
+
+```javascript
+solr.demo.reload(/*callbackFunction*/);
+```
+
+### Schema Properties
+
+1. list all fields of the core schema
+
+```javascript
+solr.demo.schema.fields(/*callbackFunction*/);
+```
+
+2. Add a field to the schema
+
+```javascript
+solr.demo.schema.add({name : "newField",type :"string"},/*callbackFunction*/);
+```
+
+3. Update a field 
+
+```javascript
+solr.demo.schema.update({name : "newField",type :"boolean"},/*callbackFunction*/);
+```
+
+4. Remove a field from the schema
+
+```javascript
+solr.demo.schema.remove({name : "newField"},/*callbackFunction*/);
 ```

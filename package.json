@@ -1,0 +1,19 @@
+{
+  "name": "solrsearch",
+  "version": "1.0.3",
+  "description": "",
+  "main": "dist/solrsearch.js",
+  "scripts": {
+    "start": "babel-node lib/solrsearch.js --presets es2015,stage-2",
+    "build": "babel lib -d dist --presets es2015,stage-2",
+    "serve": "node dist/solrsearch.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-cli": "^6.24.0",
+    "babel-preset-es2015": "^6.24.0",
+    "babel-preset-stage-2": "^6.22.0",
+    "nodemon": "^1.11.0"
+  }
+}

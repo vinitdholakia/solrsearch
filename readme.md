@@ -12,7 +12,7 @@ npm install solrsearch
 
 ## Usage and Getting Started
 
-First things first . Enter your cores in the config file....
+First things first . Enter your cores in options param as a object and create a instance
 
 In the JavaScript file:
 ```javascript
@@ -28,12 +28,12 @@ var options = {
 var solr = new ss(options);
 ```
 
-Then you can start using this instance and manage your all cores mentioned in the config file.
+Then you can start using this instance and manage your all cores mentioned in the options
 
-Example
+Example : 
 
 ```javascript
 // manage solr core
-// solr.{{corekey}}.reload()
-solr.global.status();
+// solr.{{coreKey}}.reload()
+solr.global.reload();
 ```
